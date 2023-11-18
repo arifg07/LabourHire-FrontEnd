@@ -1,0 +1,134 @@
+<div class="background">
+  <div class="container">
+  <div class="form-box">      
+    <form [formGroup]="registrationForm" #employerForm = "ngForm" (ngSubmit)="onSubmit(employerForm.value)">
+      <p class="h1">Employer Registration</p>
+        <div class="form-group">
+             
+              <div class="row">
+                  <div class="col">
+                      <label for="fname" class="col-form-label">First Name</label>
+                      <input type="text" id="fname" class="border form-control" name="fname" formControlName="fname" [class.is-invalid]="registrationForm.get('fname').invalid && registrationForm.get('fname').touched">
+                      <small [class.d-none]="registrationForm.get('fname').valid || registrationForm.get('fname').untouched" class="text-danger invalid-feedback">First name required</small>
+                  </div>
+                  <div class="col">
+                    <label for="lname" class="col-form-label">Last Name</label>
+                      <input type="text" id="lname" class="mt-n1 border form-control" name="lname"  id="lname" formControlName="lname" [class.is-invalid]="registrationForm.get('lname').invalid && registrationForm.get('lname').touched">
+                      <small [class.d-none]="registrationForm.get('lname').valid || registrationForm.get('lname').untouched" class="text-danger invalid-feedback">Last name required</small>
+                  </div>
+              </div>
+  
+              <div class="row">
+                    <div class="col">
+                      <label for="email" class="col-form-label">Email</label>
+                      <input type="email" id="email" class="border form-control" name="email" formControlName="email" [class.is-invalid]="registrationForm.get('email').invalid && registrationForm.get('email').touched" (focusout)="validateEmail(email,emailerrormsg)" #email> 
+                        <small class="text-danger invalid-feedback"  #emailerrormsg>A user with this email already exists!!</small>
+                        <small *ngIf="registrationForm.get('email').touched && !registrationForm.value.email" [class.d-none]="registrationForm.get('email').valid || registrationForm.get('email').untouched" class="text-danger invalid-feedback">email required</small>
+                        <small *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched && registrationForm.value.email" [class.d-none]="registrationForm.get('email').valid || registrationForm.get('email').untouched" class="text-danger invalid-feedback">Invalid email</small>
+                    </div>
+                  <div class="col">
+                    <label for="phone" class="col-form-label">Phone</label>
+                    <input type="text" id="phone" class="border form-control"  name="phone" [class.is-invalid]="registrationForm.get('phone').invalid && registrationForm.get('phone').touched" (focus)="errormsg.style.display = 'none'"
+                     maxlength="10" formControlName="phone" (focusout)="validatePhone(phone,errormsg)" #phone> 
+                     <small [class.d-none]="registrationForm.value.phone || registrationForm.get('phone').untouched" class="text-danger invalid-feedback">Phone number required!</small>
+                    <small [class.d-none]="registrationForm.value.phone.length == 0 || registrationForm.get('phone').valid || registrationForm.get('phone').untouched" class="text-danger invalid-feedback">enter a valid phone number</small>
+                    <small class="text-danger invalid-feedback"  #errormsg>A user with this number already exists!!</small>
+                  </div>
+              </div>
+              
+              <div class="row">
+                  <div class="col">
+                    <label for="password" id="passlab" class="col-form-label">Password</label>
+                  <div class="eyepass col">  
+                    <input type="{{inputval}}"  class="border form-control val" id="password" name="password" formControlName="password" minlength="6" 
+                    [class.is-invalid]="registrationForm.get('password').invalid && registrationForm.get('password').touched" (focusout)="passlen = true" (focus)="passlen = false">
+                    <samll [ngClass]="{'bi':true,'bi-eye-fill':eyeToggle,'bi-eye-slash-fill':!eyeToggle}" (click)=" eyeToggle = !eyeToggle; eyeToggle ? inputval='password' : inputval='text' "></samll>
+                  </div>  
+                  <small  [class.d-none]="registrationForm.value.password || registrationForm.get('password').untouched" class="text-danger inval" #passreq>Password required!!</small>
+                  <small  *ngIf="passlen && registrationForm.errors?.['toShort'] && registrationForm.get('password').touched" class="text-danger">Password should be atleast 6 digits</small>
+                  </div>
+                  <div class="col">
+                      <label for="repassword" class="col-form-label">Confirm Password</label>
+                      <input type="text" id="repassword" class="border form-control" (focusout)="passMissMatch = true"
+                      formControlName="confirmPassword" [class.is-invalid]="registrationForm.errors?.['misMatch']">
+                  </div>
+                  <i id="passmissmatch" class="text-danger" *ngIf="registrationForm.errors?.['misMatch'] && passMissMatch" >Password doesn't match</i>
+              </div>
+
+             <div class="row">
+                <div class="col"> 
+                  <label for="gender" class="col-form-label">Gender</label>
+                  <select class="form-select" aria-label="Default select example" id="gender" name="gender" formControlName="gender" [class.is-invalid]="registrationForm.get('gender').invalid && registrationForm.get('gender').touched">
+                    <option value="male">Male</option>
+                    <option value="female">FeMale</option>
+                  </select>
+                </div>
+            
+                <div class="col"> 
+                  <label for="dob" class="col-form-label">DOB</label>
+                  <input type="Date" id="dob" class="border form-control " name="dob" 
+                    max="{{maxDate}}-01-01" min="{{minDate}}-01-01" name="dob" formControlName="dateofbirth" [class.is-invalid]="registrationForm.get('dateofbirth').invalid && registrationForm.get('dateofbirth').touched"> 
+                  <small [class.d-none]="registrationForm.get('dateofbirth').valid || registrationForm.get('dateofbirth').untouched" class="text-danger invalid-feedback">Date of Birth required</small>
+                </div>
+              </div>
+
+              <div class="row">
+                <!--State-->
+                <div class="col">
+                <label for="state" class="col-form-label">State</label>
+                <select class="form-select" id="state" aria-label="Default select example" name="state" formControlName="state_id" (change)="getDistrictList(employerForm.value.state_id)"
+                [class.is-invalid]="registrationForm.get('state_id').invalid && registrationForm.get('state_id').touched">
+                  <option value="" disabled selected>Select State</option>
+                  <option *ngFor="let st of stateList" value="{{st.id}}">{{st.stateName}}</option>
+                  
+                </select>
+                </div>
+  
+                <!--district-->
+                <div class="col">
+                <label for="dist" class="col-form-label">District</label>
+                <select class="form-select" aria-label="Default select example" name="dist" id="dist" formControlName="district_id"  (change) ="getVillageList(employerForm.value.district_id)"
+                [class.is-invalid]="registrationForm.get('district_id').invalid && registrationForm.get('district_id').touched">
+                  <option value="" disabled selected>Select District</option>
+                  <option *ngFor="let dt of districtList" value="{{dt.id}}">{{dt.districtName}}</option>
+                </select>
+              </div>
+              <!--village-->
+              <div class="col">
+                <label for="village" class="col-form-label">Village</label>
+                <select class="form-select" id="village" aria-label="Default select example" name="village" formControlName="village_id" 
+                [class.is-invalid]="registrationForm.get('village_id').invalid && registrationForm.get('village_id').touched">
+                  <option value="" disabled selected>Select Village</option>
+                  <option *ngFor="let vl of villageList" value="{{vl.id}}">{{vl.villageName}}</option>
+                </select>
+                </div>
+              </div>  
+
+              <div class="row">
+                <!--Pincode-->
+                  <div class="col">
+                    <label for="post" class="col-form-label">Post Code</label>
+                    <input type="text" class="form-control" id="post" aria-label="Default select example" name="post" formControlName="postcode" [class.is-invalid]="registrationForm.get('postcode').invalid && registrationForm.get('postcode').touched">
+                  </div>
+                <!--area-->
+                  <div class="col">
+                    <label for="area" class="col-form-label">Place</label>
+                    <input  type="text" class="form-control" id="area" aria-label="Default select example" name="place" placeholder="Your native" formControlName="place" [class.is-invalid]="registrationForm.get('place').invalid && registrationForm.get('place').touched">
+                  </div>
+              </div>
+
+              <div class="text-center">
+                  <button [disabled]="!registrationForm.valid" type="submit" class="btn btn-success">Register</button>
+              </div>
+        </div>
+    </form>
+  </div>
+  </div>
+  </div>
+  
+  
+
+
+
+
+

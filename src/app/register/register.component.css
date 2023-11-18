@@ -1,0 +1,56 @@
+
+.form-select {
+    margin:5px 0px;
+}
+.form-control
+{
+    height: 63px;
+    margin: 5px 0px;
+}
+.col
+{
+    display: flex;
+}
+.val
+{
+    margin-right: -50px;
+}
+i
+{
+    font-size: smaller;
+    font-family: monospace;
+}
+.form-select
+{
+   height:62px;
+}
+.form-select
+{
+    margin-top: 10px;
+    color: rgb(89,92,95);
+}
+.dropd 
+{
+    color: rgb(89,92,95);
+}
+.editmodal
+{
+    width:100vw;
+}
+.modal-content
+{
+    width:100%;
+}
+.text-center
+{
+    margin-top: 10px;
+}
+.modal-header
+{
+   justify-content: center;
+}
+.col i
+{
+    margin-top: 20px;
+    font-size: 150%;
+}

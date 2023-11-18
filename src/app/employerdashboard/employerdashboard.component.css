@@ -1,0 +1,805 @@
+.dashboard
+{
+    width:100vw;
+    height: 100vh;
+    padding: 1%;
+}
+/* #hire-section
+{
+    display: none; 
+} */
+.dashboard-container
+{
+    border-radius: 20px;
+    width:98%;
+    height: 96%;
+    position: absolute;
+    background-color:rgb(255, 255, 255);
+    display: flex;
+    box-shadow: 0 0 10px 5px rgb(165, 165, 165);
+}
+.main-body
+{
+    position: absolute;
+    display: block;
+    width:84%;
+    height: 100%;
+    right:0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgb(255, 255, 255); 
+}
+.dash-sidebar
+{
+    position: absolute;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height:100%;
+    width: 16%;
+    background-color: rgb(227, 227, 227); 
+    padding-top: 1.5%;
+    z-index: 9999;
+    border-right: none;
+}
+.nav-bar
+{
+    width:100%;
+    height: 30%;
+    display: block;
+    border-right: none;
+}
+.logo
+{
+  position: relative;
+  background-image: url("../../assets/logo-png.png");
+  width: 70%;
+  height: 25%;
+  margin-left: 25px;
+  margin-bottom: 15%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+.nav-link
+{
+    display: flex;
+    width:90%;
+    height: 25%;
+    float:right;
+    color: black;
+    font-size: 100%;
+    align-items: center;
+    gap:10px;
+    border-radius: 10px 0 0 10px;
+    margin-top: 20px;
+    padding-left: 20%;
+    transition: color 0.2s;
+}
+.icon
+{
+    height: 53%;
+    width:17%;
+    background-size: cover;
+}
+.nav-bar div:target {
+    border-right: none;
+    background-color: white;
+    transition: color 0.5s;
+    cursor: default;
+}
+.nav-bar div a{
+    text-decoration: none;
+    color: grey;
+} 
+.nav-bar div a:hover
+{
+    color:black;
+}
+.hire 
+{
+    background-image: url(../../assets/hire.png);
+}
+.hired
+{
+    background-image: url(../../assets/hired.png);
+}
+.schedules
+{
+    background-image: url(../../assets/schedule.png);
+}
+
+.search-bar
+{
+    width:100%;
+    height:10%;
+    border-radius: 0 20px 0 0;
+    display: flex;
+    align-items: center;
+    box-shadow: 2px 5px 20px 0 grey;
+    gap:20%;
+}
+.filter
+{
+    font-size: 15px;
+    height: 50%;
+    width:50%;
+    margin-left: 10%;
+    border-radius: 20px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.spec-filter
+{
+    width: 40%;
+    height: 100%;
+    border-radius: 20px 0 0 20px;
+    border: none;
+    padding-left: 4%;
+    color: rgb(208, 208, 208);
+} 
+.sep 
+{
+  height:80%;
+  width:5px;
+  background-color: rgb(208, 208, 208);
+  border-radius: 5px;
+}
+.place
+{
+    border: 0px solid white;
+    height: 100%;
+    width: 40%;
+    color: rgb(208, 208, 208);
+}
+::placeholder
+{
+    color:rgb(208, 208, 208);
+}
+.place:focus
+{
+    color: black;
+    outline-style:none;
+    box-shadow: none;
+}
+.spec-filter:focus
+{
+    color: black;
+    outline-style:none;
+    box-shadow: none;
+}
+.search-icon
+{
+
+    border: none;
+    background-color: rgb(255, 255, 255);
+}
+.fa-magnifying-glass
+{
+    color: rgb(131, 131, 131);
+}
+.corner-section
+{
+   display: flex;
+   width:20%;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+   /* background-color: tomato;  */
+   border-top-right-radius: 20px;
+   gap:20%;
+}
+.profile-sec
+{
+    display: flex;
+    width:20%;
+    height:100%;
+    align-items: center;
+    justify-content: center;
+    /* background-color: teal; */
+}
+.profile
+{
+    width:45px;
+    height:45px;
+    background-image: url(../../assets/person.svg); 
+    background-position: center;
+    background-size: cover;
+    border: 5px solid rgb(201, 201, 201);
+    border-radius: 50%;
+}
+/* .logout
+{
+    text-decoration: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 100%;
+    color: #fff;
+    border-radius: 20px;
+    box-shadow: 5px 0px 28px  rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+    background-color: rgb(103, 103, 103);
+}
+.logout:active {
+    background-color: red;
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+} */
+.main-content
+{
+    position: relative;
+    width:100%;
+    height:90%;
+    border-bottom-right-radius: 20px;
+    display: block;
+    float: right;
+}
+.card-conatiner
+{
+    position: absolute;
+    width:100%;
+    height:100%;
+    background-color: transparent;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    z-index: -1;
+    padding-left: 4%;
+    padding-top: 4%;
+    padding-bottom: 1%;
+    gap:3%;
+}
+.hide-scrollbar::-webkit-scrollbar 
+{
+    display: none;
+}
+.fade-container
+{
+    opacity: 15%;
+}
+.labour-card
+{
+    position: relative;
+    flex: 0 1 30%;
+    height:200px;
+    background-image: linear-gradient(rgb(201, 201, 201),rgb(218, 218, 218));
+    border-radius: 20px;
+    margin-bottom: 3%;
+}
+.detail-section
+{
+    width:100%;
+    height:67%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 5%;
+    gap:5%;
+}
+.user-rating
+{
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap:5px;
+}
+.user-image
+{
+    height: 70%;
+    width: 100%;
+    background: linear-gradient(yellow,yellowgreen,red,rgb(255, 0, 195),purple); 
+    border-radius: 50%; 
+    padding: 4px; 
+}
+.user-image img
+{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.line
+{
+    content: '';
+    position: relative;
+    left:20px;
+    top: 15px;
+    width: 5px;
+    height: 75px;
+    background-color:rgb(164, 164, 164);
+    border-radius: 5px;
+
+}
+.details
+{
+    width: 72%;
+    padding-top: 20px;
+    height: 100%;
+    border-top-right-radius: 20px;
+    overflow: hidden; 
+    font-family: monospace;
+}
+.set-font
+{
+    font-size: 14px;
+    margin-top: 5px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    
+}
+.spec-list
+{
+    position: absolute;
+    margin-top: 0.8%;
+    width:18%;
+    height:30px;
+    background-color: white;
+    border-radius: 10px;
+}
+.spec-list ul
+{
+    height:100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+   list-style-type: none;
+   overflow-x: scroll;
+   gap: 15px;
+   border-radius: 1px;
+   padding-right: 20px;
+}
+.spec-list ul li{
+    background-color: rgb(185, 185, 185);
+    border-radius: 5px;
+    padding: 0px 7px;
+}
+.spec-list ul::-webkit-scrollbar 
+{
+    display: none;
+}
+.card-bottom-section
+{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 30%;
+}
+.status
+{
+    position: absolute;
+    display: flex;
+    left:20px;
+    align-items: center;
+    width:40%;
+}
+.card-bottom-section button
+{
+   position: absolute;
+   right:20px;
+}
+.available
+{
+    height:20px;
+    width:21px;
+    background-color: green;
+    border-radius: 50%;
+    border: 5px solid rgb(255, 255, 255);
+}
+.unavailable
+{
+    height:20px;
+    width:21px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 50%;
+    border: 5px solid rgb(255, 255, 255);
+}
+.schedule-btn,
+.hire-btn
+{
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(112, 112, 112);
+  color: #fff;
+  box-shadow: 5px 4px 30px 0.5px rgb(107, 107, 107);
+
+}
+.hire-btn-dis
+{
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(112, 112, 112);
+  opacity: 30%;
+  color: #fff;
+  box-shadow: 5px 4px 30px 0.5px rgb(107, 107, 107);
+}
+.schedule-btn:active,
+.hire-btn:active
+{
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgb(107, 107, 107);
+    transition: 0.1s all;
+    background-color: green;
+}
+.hire-btn-dis,
+.hire-btn
+{
+    width: 80px;
+    height: 40px;
+}
+.schedule-btn
+{
+    width:100px;
+    height: 40px;
+}
+
+.emp-profile
+{
+    display: block;
+    position: absolute;
+    height:100%;
+    width:100%;
+    background-color: rgb(255, 255, 255);
+    right:0;
+    border-bottom-right-radius: 20px;
+}
+.profile-top-section
+{
+    width:100%;
+    height: 30%;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    background:linear-gradient(rgb(193, 193, 193),white); 
+}
+.emp-photo
+{
+    display: flex;
+    width:100%;
+    height: 70%; 
+    justify-content: center; 
+
+}
+.emp-photo img
+{
+    height:150px;
+    width:150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#employer-fname
+{
+   text-align: center;
+   background-color: #fff;
+   top:0;
+   font-size: 50px;
+}
+.col-name
+{
+    display: flex;
+}
+.form-box
+{
+    position: relative;
+    width:100%;
+    height:70%;
+    display: flex;
+    border-bottom-right-radius: 20px;
+    justify-content: center;
+}
+.form-box form
+{
+    width:100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.form-group
+{
+    display: block;
+    width:100%;
+    padding: 0px 5%;
+}
+.form-control,.form-select
+{
+    color: black;
+    border: none;
+    background-color: #fff;
+    height:63px;
+}
+.col{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap:20px;
+}
+.col input,.col select
+{
+    margin: 20px 0px;
+}
+.update-btn
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.edit-btn
+{
+    background-color: cadetblue;
+    border: none;
+    position: absolute;
+    right:40px;
+    top:40px;
+}
+.request-container
+{
+    display: none;
+    width:40%;
+    height:60%;
+    background-color: rgb(232, 232, 232);
+    box-shadow: 1px 1px 15px 5px rgb(85, 85, 85);
+    position: absolute;
+    z-index: 1;
+    top:20%;
+    left: 30%;
+    border-radius: 20px;
+    justify-content: center;
+   
+}
+.request-pop
+{
+    position: absolute;
+    width:100%;
+    height:100%;
+    border-radius: 20px;
+}
+.bi-box-arrow-left
+{
+    position: absolute;
+    left: 20px;
+    top:20px;
+    z-index: 1;
+}
+.settings-section,
+.profile-section,
+.hired-section
+{
+  position: absolute;
+  border-bottom-right-radius: 20px;
+  background-color: transparent; 
+  height:100%;
+  width:100%;
+  z-index: -1;
+}
+.hired-details
+{ 
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    overflow-y: scroll;
+    align-items: center;
+    padding: 5% 0;
+    background-color: transparent;
+}
+.hired-details::-webkit-scrollbar
+{
+    display: none;
+}
+.hired-columns
+{
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 0 1 22%;
+    width: 60%;
+    background-color: rgb(235, 235, 235);
+    border-radius: 20px;
+}
+.labour-img
+{
+    display: flex;
+   position: relative;
+   height: 100%;
+   align-items: center;
+   width:20%;
+   justify-content: center;
+}
+.labour-img img{
+    position: absolute;
+    height:100%;
+    width:63%;
+    border-radius: 50%;
+}
+.labour-info
+{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height:100%;
+    width:40%;
+    /* background-color: tomato; */
+    justify-content: center;
+}
+.action-buttons
+{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right:0;
+    height:100%;
+    width:30%;
+    /* background-color: rgb(0, 103, 29); */
+    align-items: center;
+    justify-content: center;
+    gap:30px;
+}
+.approve
+{
+    color: green;
+}
+.reject
+{
+    color: red;
+}
+.settings
+{
+    position: absolute;
+    width:100%;
+    height:20%;
+    display: flex;
+}
+.settings h1
+{
+    position: absolute;
+    top:30px;
+    left:30px;
+    text-decoration: underline;
+}
+.form-box-settings
+{
+    position: absolute;
+    width:100%;
+    height:80%;
+    display: flex;
+    bottom: 0px;
+    border-bottom-right-radius: 20px;
+    justify-content: center;
+}
+.form-box-settings form
+{
+  background-color: transparent;
+  width:100%;
+  border-bottom-right-radius: 20px;
+}
+.popup-profile
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    height:40%;
+}
+.popup-profile img
+{
+    position: relative;
+    height:65%;
+    width:23%;
+    border-radius: 50%;
+}
+.star-rating
+{
+    position: absolute;
+    right:10px;
+    display: flex;
+    height:30px;
+}
+.popup-detail
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    height:55%;
+    position: relative;
+    border-radius: 0 0 20px 20px;
+}
+.name-font
+{
+    font-size: 20px;
+}
+.labour-details
+{
+    position: relative;
+    width:90%;
+    height:22%;
+    display: flex;
+    align-items: center;
+}
+.price-location
+{
+    width:50%;
+    height:100%;
+}
+.labour-details button
+{
+  position: absolute;
+  right:0;
+}
+.reviews
+{
+    width:95%;
+    height:78%;
+    overflow-y: scroll;
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+    padding-bottom: 30px;
+}
+.review-list
+{
+    width:100%;
+    background-color:rgb(222, 222, 222);
+    display: flex;
+    padding: 2%;
+    border-radius: 10px;
+}
+.reviews::-webkit-scrollbar
+{
+    display: none;
+}
+.reviews h6{
+     
+    text-align: center;
+}
+.reviews h6::after
+{
+    display: block;
+    content: '';
+    height:2px;
+    width:100%;
+    background-color: grey;
+}
+.customer-reviews
+{
+   width: 100%;
+   height:auto;
+}
+@media screen and (max-width:1450px)
+{
+    /* .labour-card
+    {
+        width:500px;
+    } */
+    .dash-sidebar
+    {
+        width:20%;
+    }
+    
+}
+@media screen and (max-width:1390px)
+{
+    /* .labour-card
+    {
+        width: 400px;
+    } */
+    .dash-sidebar
+    {
+        width:20%;
+    }
+    
+}

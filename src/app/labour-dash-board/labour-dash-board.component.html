@@ -1,0 +1,75 @@
+<div class="dashboard">
+  <div class="dashboard-container">
+    <!--..............................................................dashboard-container..................................................-->
+    <!--.........................................................sidebar......................................................-->
+    <div class="side-bar">
+      <div class="logo"></div>
+      <ul class="nav-links">
+        <li id="requests">
+          <span class="icon request"></span
+          ><a
+            href="labourDashboard#requests"
+            (click)="navigateToSection('request')"
+            >Requests</a
+          >
+        </li>
+        <li id="profile">
+          <span class="icon user"></span
+          ><a
+            href="labourDashboard#profile"
+            (click)="navigateToSection('profile')"
+            >Profile</a
+          >
+        </li>
+        <li id="settings">
+          <i class="bi bi-gear-fill"></i>
+          <a
+            href="labourDashboard#settings"
+            (click)="navigateToSection('settings')"
+            >Settings</a
+          >
+        </li>
+      </ul>
+    </div>
+    <!--.........................................................Main body............................................................-->
+    <div class="main-body">
+      <div class="header">
+        <div class="logout">
+          <button type="button" class="btn btn-danger" (click)="logout()">
+            Logout
+          </button>
+        </div>
+      </div>
+
+      <!--........................................................Request-Section....................................................-->
+      <div class="requests common" #requests>
+        <div class="request-container">
+          <div class="request-list" *ngFor="let rl of requestList | async">
+            <div class="emp-image"><img src="../../assets/emp.jpg" /></div>
+            <div class="emp-info">
+              <b>{{ rl.fname + " " + rl.lname }}</b>
+            </div>
+            <div class="btn-section">
+              <button type="button" class="btn btn-success">Accept</button>
+              <button type="button" class="btn btn-danger">Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!--.......................................................Profile-Body.........................................................-->
+        <div class="profile common" #profile>
+          <div class="profile-head">
+            <div class="profile-photo"></div>
+            <div class="details"></div>
+          </div>
+        </div>
+
+        <!--........................................................Settings-Section....................................................-->
+        <div class="settings common" #settings>
+          <h1>Settings</h1>
+        </div>
+
+      <!--..............................................................dashboard-container...............................................-->
+    </div>
+  </div>
+</div>

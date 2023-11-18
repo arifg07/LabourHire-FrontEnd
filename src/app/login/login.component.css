@@ -1,0 +1,193 @@
+.cntr
+{
+    width:100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,20,0.8),rgba(0,0,20,0.8)),url(../../assets/backgroundlogin.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+#logo
+{ 
+    margin-top:3vh;
+    margin-left:1.5vw;
+    height: 8vh;
+    width: 12.5vw;
+}
+.input--group
+{
+    height:280px;
+}
+.form--box
+{
+    width:90%;
+    max-width:450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    padding: 50px 60px 70px;
+    text-align: center;
+}
+.form--box h1{
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: #3c00a0;
+    position: relative;
+} 
+.form--box h1::after
+{
+   content:'';
+   width: 30px;
+   height: 4px;
+   border-radius: 3px;
+   background-color: #3c00a0;
+   position: absolute;
+   bottom: -12px;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.input-field
+{
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+input{
+    width:100%;
+    background: transparent;
+    border:0;
+    outline: 0;
+    padding: 18px 15px;
+}
+.input-field i{
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #999;
+
+} 
+.user{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -140px;
+}
+.user button{
+    border:none;
+    background: none;
+    color: #3c00a0;
+    font-size: 13px;
+}
+.btn-field
+{
+    margin-top: 100px;
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+}
+.login
+{
+    background-color: rgb(3, 23, 113);
+    border: none;
+    margin-top: 20px;
+    border-radius: 20px;
+    height: 40px;
+    width:20%;
+    color: #fff;
+    transition: 0.1;
+}
+.login:hover
+{
+    background: #eaeaea;
+    color: #999;
+}
+.btn-toggle
+{
+    flex-basis: 48%;
+    background: #3c00a0;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border:0;
+    outline:0;
+    cursor:pointer;
+    transition: 0.1s;
+}
+.disable
+{
+    background: #eaeaea;
+    color:#555;
+}
+.disable:hover
+{ 
+    transition: 0.3s;
+    background: #3c00a0;
+    color: #fff;
+}
+
+#regse
+{
+    visibility: hidden;
+}
+.msg
+{
+    text-align: left;
+    font-size: 70%;
+    display: none;
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .form
+{
+    display: flex;
+    width:33.33vw;
+    height:50vh;
+    background-color: whitesmoke;
+    padding-top: 0px;
+    box-shadow: 10px 20px 5px rgb(176, 175, 175);
+    justify-content: center;
+} */
+/* .btn
+{
+    position: relative;
+    height:50px;
+    width:50%;
+    color:brown;
+    font-size:20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: chartreuse;
+    border-style: none;
+    margin: 10px;
+} */

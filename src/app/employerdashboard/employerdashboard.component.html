@@ -1,0 +1,571 @@
+<div class="dashboard">
+  <div class="dashboard-container">
+    <div class="dash-sidebar">
+      <!--Navigation-->
+      <div class="nav-bar">
+        <div class="logo"></div>
+        <div class="nav-link" id="hire">
+          <i class="fab fa-hire-a-helper"></i>
+          <a href="employerDashboard#hire" (click)="navigateToSection('hire')"
+            >Hire</a
+          >
+        </div>
+        <div class="nav-link" id="hired">
+          <i class="bi bi-filter"></i><a
+            href="employerDashboard#hired"
+            (click)="navigateToSection('hired')"
+            >Hired</a
+          >
+        </div>
+        <div class="nav-link" id="profile">
+          <i class="bi bi-person"></i><a
+            href="employerDashboard#profile"
+            (click)="navigateToSection('profile')"
+            >Profile</a
+          >
+        </div>
+        <div class="nav-link" id="settings">
+          <i class="bi bi-gear"></i><a
+            href="employerDashboard#settings"
+            (click)="navigateToSection('settings')"
+            >Settings</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="main-body">
+      <!--search-bar-->
+      <div class="search-bar">
+        <div class="filter">
+          <select class="spec-filter" #spec>
+            <option disabled selected>Who would you like to hire?</option>
+            <option *ngFor="let sp of specializationList" value="{{ sp.id }}">
+              {{ sp.specialization }}
+            </option>
+          </select>
+          <div class="sep"></div>
+          <select type="text" class="place" #village>
+            <option selected disabled>Choose Village</option>
+            <option *ngFor="let vl of villageList" value="{{ vl.id }}">
+              {{ vl.villageName }}
+            </option>
+          </select>
+          <button
+            class="search-icon"
+            (click)="getLabourByVillageAndSpec(village, spec)"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+
+        <div class="corner-section">
+          <div class="profile-sec">
+            <span
+              class="profile"
+              (click)="
+                viewProfile = !viewProfile;
+                viewProfile
+                  ? (profile.style.display = 'block')
+                  : (profile.style.display = 'none')
+              "
+            ></span>
+          </div>
+          <button type="button" class="btn btn-danger" (click)="logout()">
+            Logout
+          </button>
+        </div>
+      </div>
+
+      <!--...........................................................Main-content.............................................................-->
+      <div class="main-content">
+        <!--........................................................hire section..............................................................-->
+        <div
+          [ngClass]="{
+            'card-conatiner': true,
+            'hide-scrollbar': true,
+            'fade-container': fadeContent
+          }"
+          id="hire-section"
+          #hiresection
+        >
+          <div class="labour-card" *ngFor="let lb of labourList">
+            <div class="detail-section">
+              <div class="user-rating">
+                <div class="user-image">
+                  <img src="../../assets/labour_image.jpg" />
+                </div>
+                <ngx-stars
+                  [readonly]="true"
+                  [size]="1"
+                  [color]="'green'"
+                  [initialStars]="lb.rating"
+                  [customStarIcons]="starIcons"
+                ></ngx-stars>
+              </div>
+              <div class="details">
+                <b style="font-size: 100%; font-family: 'Roboto', sans-serif">{{
+                  lb.fname.toUpperCase() + " " + lb.lname.toUpperCase()
+                }}</b
+                ><br />
+                <div *ngFor="let sp of specializationList">
+                  <span *ngIf="lb.specializationId == sp.id">{{
+                    sp.specialization
+                  }}</span>
+                </div>
+                <div *ngFor="let vl of villageList">
+                  <div *ngIf="vl.id == lb.villageId" class="set-font">
+                    <i class="fa-solid fa-location-dot"></i
+                    ><span>{{ lb.place + ", " + vl.villageName }}</span>
+                  </div>
+                </div>
+                <span class="set-font"
+                  ><i class="bi bi-currency-rupee"></i
+                  >{{ lb.hourlycharges }}/hour</span
+                >
+              </div>
+            </div>
+            <div class="card-bottom-section">
+              <div class="status" *ngIf="lb.available">
+                <div class="available"></div>
+                {{ "Available" }}
+              </div>
+              <div class="status" *ngIf="!lb.available">
+                <div class="unavailable"></div>
+                {{ "Employed In" }}
+              </div>
+              <button
+                [ngClass]="{
+                  'hire-btn': lb.available,
+                  'hire-btn-dis': !lb.available
+                }"
+                [disabled]="!lb.available || fadeContent"
+                (click)="openReqPopUp(request, lb); fadeContent = !fadeContent"
+              >
+                Hire
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--end hire section-->
+        <!--.............................................................Hired Section..........................................................-->
+        <div class="hired-section" #hiredsection>
+          <div class="hired-details">
+            <div class="hired-columns" *ngFor="let hl of hiredList | async">
+              <div class="labour-img">
+                <img src="../../assets/labour_image.jpg" />
+              </div>
+              <div class="labour-info">
+                <b style="font-size: 100%; font-family: 'Roboto', sans-serif">{{
+                  hl.fname.toUpperCase() + " " + hl.lname.toUpperCase()
+                }}</b>
+                <div *ngFor="let sp of specializationList">
+                  <span *ngIf="hl.specializationId == sp.id">{{
+                    sp.specialization
+                  }}</span>
+                </div>
+                <div *ngFor="let vl of villageList">
+                  <div *ngIf="vl.id == hl.villageId" class="set-font">
+                    <i class="fa-solid fa-location-dot"></i
+                    ><span>{{ hl.place + ", " + vl.villageName }}</span>
+                  </div>
+                </div>
+                <span class="set-font"
+                  ><i class="bi bi-currency-rupee"></i
+                  >{{ hl.hourlycharges }}/hour</span
+                >
+              </div>
+              <div class="action-buttons">
+                <span [ngClass]="{'approve':hl.approvalstatus,'reject':!hl.approvalstatus}">{{hl.approvalstatus ? 'Accepted' : 'Pending'}}</span>
+                <button type="button" class="btn btn-success">Pay</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <!--.............................................................Profile Section....................................................................-->
+        <div class="profile-section" #profilesection>
+          <!--Employer Profile-->
+          <div class="emp-profile" #profile id="emp-profile">
+            <div class="profile-top-section">
+              <div class="emp-photo">
+                <img src="../../assets/labour_image.jpg" />
+              </div>
+            </div>
+            <div class="form-box">
+              <form
+                [formGroup]="updateForm"
+                #profileForm="ngForm"
+                (ngSubmit)="onUpdate()"
+              >
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col">
+                      <input
+                        id="employer-fname"
+                        class="form-control"
+                        placeholder="Name"
+                        formControlName="fname"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <i class="fa-solid fa-envelope"></i>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Email"
+                        formControlName="email"
+                      />
+                    </div>
+                    <div class="col">
+                      <i class="fa-solid fa-phone"></i>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Phone"
+                        formControlName="phone"
+                      />
+                    </div>
+                    <div class="col">
+                      <i class="bi bi-calendar-event"></i>
+                      <input
+                        type="date"
+                        class="form-control"
+                        placeholder="DateOfBirth"
+                        formControlName="dateofbirth"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <i class="fa-solid fa-venus-mars"></i>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Gender"
+                        formControlName="gender"
+                      />
+                    </div>
+                    <div class="col">
+                      <i class="fa-solid fa-map"></i>
+                      <select
+                        type="text"
+                        class="form-select"
+                        formControlName="state_id"
+                        (focusout)="getDistrictList()"
+                      >
+                        <option
+                          *ngFor="let st of stateList"
+                          value="{{ st.id }}"
+                          [selected]="st.id == employer.state_id"
+                        >
+                          {{ st.stateName }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <i class="fa-solid fa-map-location-dot"></i>
+                      <select
+                        type="text"
+                        value="District"
+                        class="form-select"
+                        formControlName="district_id"
+                        (change)="
+                          updateForm.get('village_id').value = undefined;
+                          getVillageList();
+                          enableVillageList()
+                        "
+                      >
+                        <option
+                          *ngFor="let dt of districtList"
+                          value="{{ dt.id }}"
+                          [selected]="dt.id == employer.district_id"
+                        >
+                          {{ dt.districtName }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <i class="fa-solid fa-location-dot"></i>
+                      <select
+                        type="text"
+                        class="form-control"
+                        formControlName="village_id"
+                      >
+                        <option
+                          *ngFor="let vl of villageList"
+                          value="{{ vl.id }}"
+                          [selected]="vl.id == employer.village_id"
+                        >
+                          {{ vl.villageName }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <i class="bi bi-mailbox2"></i>
+                      <input
+                        type="text"
+                        value="Postcode"
+                        placeholder="PostCode"
+                        class="form-control"
+                        formControlName="postcode"
+                      />
+                    </div>
+                    <div class="col">
+                      <i class="bi bi-house-fill"></i>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Place"
+                        formControlName="place"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!--profile end-->
+        </div>
+
+        <!--.............................................................Settings Section....................................................................-->
+        <div class="settings-section" #settingssection>
+          <div class="settings">
+            <h1>Settings</h1>
+            <button class="btn edit-btn btn-danger" (click)="update()">
+              Edit-Profile
+            </button>
+          </div>
+          <div class="form-box-settings">
+            <form
+              [formGroup]="updateForm"
+              #profileForm="ngForm"
+              (ngSubmit)="onUpdate()"
+            >
+              <div class="form-group">
+                <div class="row">
+                  <div class="col">
+                    <i class="bi bi-person-circle"></i>
+                    <input
+                      class="form-control"
+                      placeholder="Name"
+                      formControlName="fname"
+                    />
+                  </div>
+                  <div class="col">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Email"
+                      formControlName="email"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <i class="fa-solid fa-phone"></i>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Phone"
+                      formControlName="phone"
+                    />
+                  </div>
+                  <div class="col">
+                    <i class="bi bi-calendar-event"></i>
+                    <input
+                      type="date"
+                      class="form-control"
+                      placeholder="DateOfBirth"
+                      formControlName="dateofbirth"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <i class="fa-solid fa-venus-mars"></i>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Gender"
+                      formControlName="gender"
+                    />
+                  </div>
+                  <div class="col">
+                    <i class="fa-solid fa-map"></i>
+                    <select
+                      type="text"
+                      class="form-select"
+                      formControlName="state_id"
+                      (focusout)="getDistrictList()"
+                    >
+                      <option
+                        *ngFor="let st of stateList"
+                        value="{{ st.id }}"
+                        [selected]="st.id == employer.state_id"
+                      >
+                        {{ st.stateName }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <select
+                      type="text"
+                      value="District"
+                      class="form-select"
+                      formControlName="district_id"
+                      (change)="
+                        updateForm.get('village_id').value = undefined;
+                        getVillageList();
+                        enableVillageList()
+                      "
+                    >
+                      <option
+                        *ngFor="let dt of districtList"
+                        value="{{ dt.id }}"
+                        [selected]="dt.id == employer.district_id"
+                      >
+                        {{ dt.districtName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <select
+                      type="text"
+                      class="form-control"
+                      formControlName="village_id"
+                    >
+                      <option
+                        *ngFor="let vl of villageList"
+                        value="{{ vl.id }}"
+                        [selected]="vl.id == employer.village_id"
+                      >
+                        {{ vl.villageName }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <i class="bi bi-mailbox2"></i>
+                    <input
+                      type="text"
+                      value="Postcode"
+                      placeholder="PostCode"
+                      class="form-control"
+                      formControlName="postcode"
+                    />
+                  </div>
+                  <div class="col">
+                    <i class="bi bi-house-fill"></i>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Place"
+                      formControlName="place"
+                    />
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="submit"
+                    [disabled]="!updateForm.valid"
+                    class="btn btn-success update-btn"
+                    (click)="update()"
+                  >
+                    Update
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!--Request Pop-up-->
+      <div #request class="request-container">
+        <div class="request-pop" *ngIf="labour != undefined">
+          <i
+            class="bi bi-box-arrow-left"
+            (click)="request.style.display = 'none'; fadeContent = !fadeContent"
+          ></i>
+          <br />
+          <div class="popup-profile">
+            <div class="star-rating">
+              <ngx-stars
+                [readonly]="true"
+                [size]="1"
+                [color]="'green'"
+                [initialStars]="3.9"
+                [customStarIcons]="starIcons"
+              ></ngx-stars>
+            </div>
+            <img src="../../assets/labour_image.jpg" />
+            <span class="name-font">{{
+              labour.fname + " " + labour.lname
+            }}</span>
+            <div *ngFor="let sp of specializationList">
+              <span *ngIf="labour.specializationId == sp.id">{{
+                sp.specialization
+              }}</span>
+            </div>
+          </div>
+          <div class="popup-detail">
+            <div class="labour-details">
+              <div class="price-location">
+                <div *ngFor="let vl of villageList">
+                  <div *ngIf="vl.id == labour.villageId" class="set-font">
+                    <i class="fa-solid fa-location-dot"></i
+                    ><span>{{ labour.place + ", " + vl.villageName }}</span>
+                  </div>
+                </div>
+                <span class="set-font"
+                  ><i class="bi bi-currency-rupee"></i
+                  >{{ labour.hourlycharges }}/hour</span
+                >
+              </div>
+              <button
+                type="button"
+                class="btn btn-success"
+                [disabled]="isRequestSent"
+                (click)="sendRequest()"
+              >
+                Send Request
+              </button>
+            </div>
+            <div class="reviews">
+              <h6>Reviews</h6>
+              <button type="button" class="btn btn-secondary">
+                Add a Review
+              </button>
+              <div class="review-list" *ngFor="let i of [1, 2, 3, 4]">
+                <div class="customer-reviews">
+                  {{ "Reveiwer Name" }}
+                  <p>
+                    Hkjdlslbabdkhbsfhkdjbsbjcdsc hnad bhfbhskbcjd skj dsbckja sc
+                    j jdsbfdsbhjdsbfjsbfjhdbshf
+                  </p>
+                </div>
+                <ngx-stars
+                  [readonly]="true"
+                  [size]="1"
+                  [color]="'green'"
+                  [initialStars]="labour.rating"
+                  [customStarIcons]="starIcons"
+                ></ngx-stars>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end of request pop-up-->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+.background
+{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+.container
+{
+    padding: 20px 50px;
+    border: 2px solid greenyellow;
+    text-align: center;
+    margin-top: 2%;
+    width: 60%;
+    height: auto;
+}
+.container p{
+    color: greenyellow;
+    margin-bottom: 5%;
+}
+.container p::after{
+    content:'';
+   width: 100px;
+   height: 4px;
+   border-radius: 3px;
+   background-color: greenyellow;
+   position: absolute;
+   left: 50%;
+   top:15vh;
+   transform: translateX(-50%);
+}
+.form-group
+{
+    margin-top: 9vh;
+}
+.form-select {
+    margin:5px 0px;
+}
+.form-control
+{
+    height: 63px;
+    margin: 5px 0px;
+}
+.val
+{
+    margin-right: -50px;
+}
+.loc
+{
+    display: flex;
+    justify-content: space-between;
+}
+.form-select
+{
+    height:62px;
+    margin-top: 10px;
+    color: rgb(89,92,95);
+}
+.loc1
+{
+    width: 49%;
+}
+.dropd 
+{
+    color: rgb(89,92,95);
+}
+.text-center
+{
+    margin: 3.5% ;
+}
+.bi
+{
+    margin-top: 20px;
+    font-size: 150%;
+}
+.row
+{
+    display: flex;
+    text-align: left;
+}
+#passlab
+{
+    margin-right: 100%;
+}
+.eyepass
+{
+    display: flex;
+}
+small{
+    font-size: 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+#existmsg
+{
+    display: none;
+}
+.splist
+{
+    margin-top: 0.7%;
+} 
+small
+{
+    display: block;
+    text-align:left;
+}
+@media screen and (max-width:900px) 
+{
+    #inval
+    {
+        font-size:15px;
+    }   
+    .row{
+        display: block;
+    } 
+    
+}
+@media screen and (max-width:1000px) 
+{
+    small
+    {
+        font-size: 75%;
+    }
+}
+@media screen and (max-width:580px) 
+{
+    .container
+    {
+        width: 80vw;
+    }
+}
+@media screen and (max-width:400px) 
+{
+    .container
+    {
+        width: 100vw;
+    }
+}

@@ -1,0 +1,204 @@
+.dashboard
+{
+    width:100vw;
+    height: 100vh;
+    padding: 1%;
+}
+.dashboard-container
+{
+    border-radius: 20px;
+    width:98%;
+    height: 96%;
+    position: absolute;
+    background-color:rgb(255, 255, 255);
+    display: flex;
+    box-shadow: 0 0 10px 5px rgb(165, 165, 165);
+}
+.side-bar
+{
+    position: absolute;
+    height:100%;
+    width: 16%;
+    background: linear-gradient(white,rgb(149, 149, 149),rgb(143, 143, 143),rgb(223, 223, 223));
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2%;
+    gap:50px;
+}
+.logo
+{
+  position: relative;
+  background-image: url("../../assets/logo-png.png");
+  width: 70%;
+  height: 8%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+.nav-links
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    width:100%;
+    height: 30%;
+    /* background-color: brown; */
+    justify-content: space-around;
+}
+.nav-links li
+{
+    display: flex;
+    gap:10px;
+    padding-left: 20px;
+    border-radius: 20px 0 0 20px;
+    width:100%; 
+    height: 25%;
+    align-items: center;
+}
+.icon
+{
+    height:40%;
+    width:11%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.request
+{
+    background-image: url(../../assets/request-icon.png);
+}
+.user
+{
+    background-image: url(../../assets/person.svg);
+}
+.schedules
+{
+    background-image: url(../../assets/schedule.png);
+}
+.nav-links li a
+{
+    font-size: 100%;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+.nav-links li:target
+{
+    background-color: white;  
+}
+.main-body
+{
+    position: absolute;
+    height: 100%;
+    width:84%;
+    right:0;
+    border : 1px solid red;
+}
+.header
+{
+    position: absolute;
+    right: 0;
+    width:100%;
+    height:10%;
+    display: flex;
+    align-items: center;
+    box-shadow: 5px 5px 10px 0 rgb(183, 183, 183);
+    border-top-right-radius: 20px;
+}
+.logout
+{
+    position: absolute;
+    right: 50px;
+}
+.common
+{
+    position: absolute;
+    width:100%;
+    height:90%; 
+    border-bottom-right-radius: 20px;
+    bottom: 0;
+    border: 2px solid red;
+}
+.request-container
+{ 
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    overflow-y: scroll;
+    align-items: center;
+    padding: 5% 0;
+    /* border :2px solid black; */
+}
+.request-container::-webkit-scrollbar
+{
+    display: none;
+} 
+.request-list
+{
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 0 1 22%;
+    width: 60%;
+    background-color: rgb(235, 235, 235);
+    border-radius: 20px;
+}
+.emp-image
+{
+    position: relative;
+    height:100%;
+    width: 11%;
+    /* background-color: brown; */
+}
+.emp-image img
+{
+   width:100%;
+   height:100%;
+   position: absolute;
+   border-radius: 50%;
+}
+.emp-info
+{  
+    position: relative;
+    height:100%;
+    width:50%;
+    background-color: tomato; 
+    padding-left: 20px;
+}
+.btn-section
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+    width: 38%;
+    height: 100%;
+    background-color: greenyellow;
+    border-radius: 0 10px 10px 0;
+}
+.profile-head
+{
+    width:100%;
+    height:20%;
+    background: linear-gradient(to right,rgb(160, 235, 160),rgb(241, 241, 145),rgb(255, 155, 155),rgb(209, 243, 239)),rgb(0, 114, 4);
+    display: flex;
+    justify-content: center;
+    padding-top: 4%;
+}
+.profile-photo
+{
+    height:200px;
+    width:200px;
+    background-image: url(../../assets/labou_image.jpeg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+}

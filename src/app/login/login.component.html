@@ -1,0 +1,58 @@
+<div class="cntr">
+    <img src="../../assets/logo-png.png" id = "logo" alt="logo">
+     <div class="form--box">
+    <form [formGroup]="formLogin" #loginForm="ngForm" >
+        <!--Labour Login-->
+    <ng-container *ngIf="toggle; else emp">
+        <h1>Labour</h1>
+        <i class="text-danger msg" #invalmsg>Invalid PhoneNumber or Password!!</i>
+        <i class="text-danger msg" #reqmsg>PhoneNumber and Password required!</i>
+        <i class="text-danger msg" #newuser>Not a registered number!!</i>
+        <i class="text-danger msg" #invalnum>Invalid number</i>
+         <div class="input--group">
+            <div class ="input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type = "text" placeholder="Phone Number" value="" #phone maxlength="10" (focusout)="validateNumber(newuser,phone,invalnum)"
+                 (focus)="newuser.style.display='none';invalnum.style.display='none';reqmsg.style.display='none';" formControlName="phone">
+            </div>
+            <div class ="" [ngClass]="{'input-field': true,'border border-danger':!login}">
+                <i class="fa-solid fa-lock"></i>
+                <input type = "password" placeholder="Password" value="" #password formControlName="labourPassword">
+            </div>
+            <button type="button" class="login" (click)="labourLoginForm(phone,password,invalmsg,reqmsg)">Login</button>
+        </div>
+    </ng-container>
+    <!--Employer Login-->
+    <ng-template  #emp>
+        <h1>Employer</h1>
+        <i class="text-danger msg" #empinvalmsg>Invalid Email or Password!!</i>
+        <i class="text-danger msg" #empreqmsg>Email and Password required!</i>
+        <i class="text-danger msg" #newemail>Not a registered Email ID!!</i>
+        <i class="text-danger msg" #invalemail>Invalid email</i>
+        <div class="input--group">
+            <div class ="input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type = "email" placeholder="Email" #email   (focus)="newemail.style.display='none';invalemail.style.display='none';empreqmsg.style.display='none';"
+                (focusout)="validateEmail(newemail,email,invalemail)" formControlName="email">
+            </div>
+            <div class ="input-field">
+                <i class="fa-solid fa-lock"></i>
+                <input type = "password"  placeholder="Password"  #emppass formControlName="employeePassword">
+            </div>
+            <button type="button" (click)="employerLoginForm(email,emppass,empinvalmsg,empreqmsg)" class="login">Login</button>
+         </div>
+    </ng-template>
+    </form>
+    <div class="user" id="reg">
+        <button style="color:red;">Forgot Password?</button>
+        <button (click)="toggle ? laboruRegistraionForm() : employerRegistraionForm()">New User? Register</button>
+    </div>
+
+    <div class="btn-field">
+        <button type="button"  [ngClass]="{'btn-toggle':true, 'disable': !toggle}" (click)="toggle=true">Labour</button>
+        <button type="button"  [ngClass]="{'btn-toggle':true, 'disable': toggle}"  (click)="toggle=false">Employer</button>
+     </div>
+
+     </div>
+</div>
+
